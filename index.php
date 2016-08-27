@@ -18,6 +18,8 @@ if (array_key_exists('CONTENT_LENGTH', $_SERVER)) {
     $content = file_get_contents('php://input');
     curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Length: ' . $_SERVER['CONTENT_LENGTH']));
+} else {
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Length: 0'));
 }
 $content = curl_exec($curl);
 curl_close($curl);
