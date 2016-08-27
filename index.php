@@ -14,10 +14,10 @@ $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $_SERVER['REQUEST_METHOD']);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_HEADER, true);
-if (array_key_exists('CONTENT_LENGTH', $_SERVER)) {
+if (array_key_exists('HTTP_CONTENT_LENGTH', $_SERVER)) {
     $content = file_get_contents('php://input');
     curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Length: ' . $_SERVER['CONTENT_LENGTH']));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Length: ' . $_SERVER['HTTP_CONTENT_LENGTH']));
 } else {
     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Length: 0'));
 }
